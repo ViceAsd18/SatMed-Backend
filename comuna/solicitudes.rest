@@ -1,48 +1,9 @@
 ### ========================================
-### ROLES - SAT-MED
+### COMUNA - SAT-MED
 ### ========================================
 
 ### Obtener todos los roles
-GET http://localhost:8080/roles
+GET http://localhost:6100/comunas
 
 ### Obtener rol por ID
-GET http://localhost:8080/roles/1
-
-### Crear nuevo rol
-POST http://localhost:8080/roles
-Content-Type: application/json
-
-{
-    "nombreRol": "Administrador"
-}
-
-### Crear otro rol
-POST http://localhost:8080/roles
-Content-Type: application/json
-
-{
-    "nombreRol": "Médico"
-}
-
-### Crear otro rol
-POST http://localhost:8080/roles
-Content-Type: application/json
-
-{
-    "nombreRol": "Enfermero"
-}
-
-### Actualizar rol
-PUT http://localhost:8080/roles
-Content-Type: application/json
-
-{
-    "idRol": 1,
-    "nombreRol": "Super Administrador"
-}
-
-### Eliminar rol
-DELETE http://localhost:8080/roles/3
-
-### Probar error - Rol no existe
-GET http://localhost:8080/roles/999
+GET http://localhost:6100/comunas/1 
