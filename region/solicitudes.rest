@@ -1,0 +1,40 @@
+### ========================================
+### REGIONES - SAT-MED
+### ========================================
+
+### Obtener todas las regiones
+GET http://localhost:8080/regiones
+
+### Obtener región por ID
+GET http://localhost:8080/regiones/1
+
+### Crear nueva región
+POST http://localhost:8080/regiones
+Content-Type: application/json
+
+{
+    "nombreRegion": "Coquimbo"
+}
+
+### Crear otra región
+POST http://localhost:8080/regiones
+Content-Type: application/json
+
+{
+    "nombreRegion": "Valparaíso"
+}
+
+### Actualizar región
+PUT http://localhost:8080/regiones
+Content-Type: application/json
+
+{
+    "idRegion": 1,
+    "nombreRegion": "Región de Coquimbo"
+}
+
+### Eliminar región
+DELETE http://localhost:8080/regiones/2
+
+### Probar error - Región no existe
+GET http://localhost:8080/regiones/999

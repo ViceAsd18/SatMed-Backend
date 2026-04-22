@@ -3,13 +3,13 @@
 ### ========================================
 
 ### Obtener todos los roles
-GET http://localhost:8080/roles
+GET http://localhost:6500/roles
 
 ### Obtener rol por ID
-GET http://localhost:8080/roles/1
+GET http://localhost:6500/roles/1
 
 ### Crear nuevo rol
-POST http://localhost:8080/roles
+POST http://localhost:6500/roles
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Crear otro rol
-POST http://localhost:8080/roles
+POST http://localhost:6500/roles
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Crear otro rol
-POST http://localhost:8080/roles
+POST http://localhost:6500/roles
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ### Actualizar rol
-PUT http://localhost:8080/roles
+PUT http://localhost:6500/roles
 Content-Type: application/json
 
 {
@@ -42,7 +42,7 @@ Content-Type: application/json
 }
 
 ### Eliminar rol
-DELETE http://localhost:8080/roles/3
+DELETE http://localhost:6500/roles/3
 
 ### Probar error - Rol no existe
-GET http://localhost:8080/roles/999
+GET http://localhost:6500/roles/999
