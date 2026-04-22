@@ -43,17 +43,20 @@ public class RolService {
 
     }
 
-    public Rol actualizarRol(ActualizarRol rol) {
-
-        Rol rolExistente = rolRepository.findById(rol.getIdRol()).orElse(null);
+    public Rol actualizarRol(Integer id, ActualizarRol rol) {
+        
+        Rol rolExistente = rolRepository.findById(id).orElse(null);
 
         if (rolExistente == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rol con ID: " + rol.getIdRol() + " no encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rol con ID: " + id + " no encontrado");
         }
 
         rolExistente.setNombreRol(rol.getNombreRol());
         return rolRepository.save(rolExistente);
     }
+
+
+
 
     public String eliminarRol(Integer id){
         Rol rolExistente = rolRepository.findById(id).orElse(null);
