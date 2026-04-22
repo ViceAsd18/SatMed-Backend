@@ -20,17 +20,21 @@ public class ComunaController {
     
     @Autowired
     private ComunaService comunaService;
-    
-    @GetMapping("")
-    public List<Comuna> obtenerComuna() {
+
+    @GetMapping
+    public List<Comuna> obtenerComunas() {
         return comunaService.obtenerComunas();
     }
 
-    @GetMapping("{id}")
-    public Comuna obtenerComuna (@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public Comuna obtenerComunaPorId(@PathVariable Integer id) {
         return comunaService.obtenerComunaPorId(id);
     }
-    
+
+    @GetMapping("/region/{idRegion}")
+    public List<Comuna> obtenerComunasPorRegion(@PathVariable Integer idRegion) {
+        return comunaService.obtenerComunasPorRegion(idRegion);
+    }
     
 
 }

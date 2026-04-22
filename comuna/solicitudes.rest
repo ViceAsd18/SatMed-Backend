@@ -1,9 +1,18 @@
 ### ========================================
-### COMUNA - SAT-MED
+### COMUNAS - SAT-MED
 ### ========================================
 
-### Obtener todos los roles
+### Obtener todas las comunas
 GET http://localhost:6100/comunas
 
-### Obtener rol por ID
-GET http://localhost:6100/comunas/1 
+### Obtener comuna por ID
+GET http://localhost:6100/comunas/1
+
+### Obtener comunas por región (Coquimbo = 5)
+GET http://localhost:6100/comunas/region/5
+
+### Obtener comunas por región (Valparaíso = 6)
+GET http://localhost:6100/comunas/region/6
+
+### Probar error - Comuna no existe
+GET http://localhost:6100/comunas/999

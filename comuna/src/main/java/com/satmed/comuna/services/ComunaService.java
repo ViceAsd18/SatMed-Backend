@@ -17,20 +17,22 @@ public class ComunaService {
     @Autowired
     private ComunaRepository comunaRepository;
 
-    public List<Comuna> obtenerComunas () {
+    public List<Comuna> obtenerComunas() {
         return comunaRepository.findAll();
     }
 
-    public Comuna obtenerComunaPorId (Integer idComuna) {
+    public Comuna obtenerComunaPorId(Integer id) {
+        Comuna comunaEncontrada = comunaRepository.findById(id).orElse(null);
 
-        Comuna comunaEncontrada = comunaRepository.findById(idComuna).orElse(null);
-
-        if (comunaEncontrada == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La comuna con ID: " + idComuna + " no fue encontrada");
+        if (comunaEncontrada == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Comuna con ID: " + id + " no encontrada");
         }
 
         return comunaEncontrada;
+    }
 
+    public List<Comuna> obtenerComunasPorRegion(Integer idRegion) {
+        return comunaRepository.findByIdRegion(idRegion);
     }
 
 }
