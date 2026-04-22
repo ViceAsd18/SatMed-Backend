@@ -51,7 +51,7 @@ public class RegionService {
         return regionRepository.save(regionExistente);
     }
 
-    public void eliminarRegion(Integer id) {
+    public String eliminarRegion(Integer id) {
         Region regionExistente = regionRepository.findById(id).orElse(null);
 
         if (regionExistente == null) {
@@ -59,6 +59,7 @@ public class RegionService {
         }
 
         regionRepository.delete(regionExistente);
+        return "Región eliminada correctamente";
     }
 
 }
