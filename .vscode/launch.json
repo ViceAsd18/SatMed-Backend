@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ComunaApplication<comuna>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.comuna.ComunaApplication",
+            "projectName": "comuna",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
