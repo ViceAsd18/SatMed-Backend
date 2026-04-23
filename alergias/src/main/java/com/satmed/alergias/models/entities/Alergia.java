@@ -15,7 +15,7 @@ public class Alergia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer alergia;
+    private Integer idAlergia;
 
     @Column(nullable = false)
     private String nombreAlergia;

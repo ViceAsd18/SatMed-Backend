@@ -23,7 +23,7 @@ public class AlergiaController {
         return alergiaService.obtenerAlergias();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idAlergia}")
     public Alergia obtenerAlergiaPorId(@PathVariable Integer idAlergia) {
         return alergiaService.obtenerAlergiaPorId(idAlergia);
     }
