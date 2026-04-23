@@ -1,0 +1,10 @@
+###Obtener todas las alergias
+
+GET http://localhost:8080/alergias
+Content-Type: application/json
+
+
+
+###Obtener alergia por ID
+GET http://localhost:8080/alergias/1
+Content-Type: application/json
