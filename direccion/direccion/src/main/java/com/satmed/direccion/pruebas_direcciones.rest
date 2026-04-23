@@ -1,0 +1,32 @@
+### LISTAR:
+GET http://localhost:8081/api/direcciones/listar
+
+
+
+### OBTENER:
+GET http://localhost:8081/api/direcciones/1
+
+
+### AGREGAR:
+POST http://localhost:8081/api/direcciones/agregar
+Content-Type: application/json
+
+{
+    "calle": "Avenida Costanera",
+    "numero": 500
+}
+
+
+### ACTUALIZAR:
+PUT http://localhost:8081/api/direcciones/actualizar/1
+Content-Type: application/json
+
+{
+    "idDireccion": 1,
+    "calle": "Calle Modificada",
+    "numero": 999
+}
+
+
+### ELIMINAR:
+DELETE http://localhost:8081/api/direcciones/eliminar/4
