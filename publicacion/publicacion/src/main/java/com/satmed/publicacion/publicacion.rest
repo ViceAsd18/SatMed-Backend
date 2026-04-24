@@ -1,0 +1,28 @@
+### LISTAR
+GET http://localhost:8081/api/publicacion/listar
+
+### AGREGAR
+POST http://localhost:8081/api/publicacion/agregar
+Content-Type: application/json
+
+{
+    "titulo": "Nueva Jornada SAT-MED",
+    "contenido": "Contenido de prueba para Coquimbo",
+    "activoPublicacion": true
+}
+
+### OBTENER POR ID
+GET http://localhost:8081/api/publicacion/1
+
+### ACTUALIZAR (Usando el ID 2 que sí existe)
+PUT http://localhost:8081/api/publicacion/actualizar/2
+Content-Type: application/json
+
+{
+    "titulo": "Título de SAT-MED Actualizado",
+    "contenido": "Cambiamos el contenido con éxito desde el archivo rest.",
+    "activoPublicacion": true
+}
+
+### ELIMINAR
+DELETE http://localhost:8081/api/publicacion/eliminar/1
