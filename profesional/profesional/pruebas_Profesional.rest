@@ -1,0 +1,33 @@
+### SAT-MED — Microservicio Profesional (puerto 8081)
+@baseUrl = http://localhost:8083
+@contentType = application/json
+
+### Listar todos los profesionales
+GET {{baseUrl}}/api/profesionales
+
+### Obtener profesional por ID (cambiar 1 por un id existente)
+GET {{baseUrl}}/api/profesionales/1
+
+### Agregar profesional
+POST {{baseUrl}}/api/profesionales
+Content-Type: {{contentType}}
+
+{
+  "numeroRegistroProfesional": "REG-2026-001",
+  "activoProfesional": true
+}
+
+### Actualizar profesional (cambiar 1 por el id a actualizar)
+PUT {{baseUrl}}/api/profesionales/1
+Content-Type: {{contentType}}
+
+{
+  "numeroRegistroProfesional": "REG-2026-001-ACT",
+  "activoProfesional": true
+}
+
+### Eliminar de forma lógica (desactiva activoProfesional)
+DELETE {{baseUrl}}/api/profesionales/1
+
+### Eliminar de forma física (borra el registro)
+DELETE {{baseUrl}}/api/profesionales/1?fisico=true
