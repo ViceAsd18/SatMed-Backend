@@ -1,0 +1,37 @@
+### Listar todos los horarios profesionales
+GET http://localhost:8081/api/horario-profesional
+Content-Type: application/json
+
+###
+
+### Buscar horario profesional por ID
+GET http://localhost:8081/api/horario-profesional/1
+Content-Type: application/json
+
+###
+
+### Agregar nuevo horario profesional
+POST http://localhost:8081/api/horario-profesional
+Content-Type: application/json
+
+{
+  "horaInicio": "08:00:00",
+  "horaFin": "16:00:00"
+}
+
+###
+
+### Actualizar horario profesional por ID
+PUT http://localhost:8081/api/horario-profesional/1
+Content-Type: application/json
+
+{
+  "horaInicio": "09:00:00",
+  "horaFin": "17:00:00"
+}
+
+###
+
+### Eliminar horario profesional por ID
+DELETE http://localhost:8081/api/horario-profesional/1
+Content-Type: application/json
