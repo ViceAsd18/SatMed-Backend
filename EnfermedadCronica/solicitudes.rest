@@ -1,0 +1,9 @@
+### Obtener todas las enfermedades crónicas
+
+GET http://localhost:6600/enfermedades-cronicas
+Content-Type: application/json
+
+### Obtener enfermedad crónica por ID
+
+GET http://localhost:6600/enfermedades-cronicas/1
+Content-Type: application/json
