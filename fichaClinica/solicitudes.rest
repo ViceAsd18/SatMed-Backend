@@ -1,0 +1,34 @@
+### ===============================
+### FICHA CLINICA 
+### ===============================
+
+### Obtener todas las fichas clínicas
+GET http://localhost:6700/fichas-clinicas
+
+
+### Obtener ficha clínica por ID
+GET http://localhost:6700/fichas-clinicas/1
+
+
+### Obtener ficha clínica por ID de paciente
+GET http://localhost:6700/fichas-clinicas/paciente/1
+
+
+### Crear ficha clínica (uso interno)
+POST http://localhost:6700/fichas-clinicas
+Content-Type: application/json
+
+{
+"idPaciente": 7,
+"observaciones": "Paciente con antecedentes de hipertensión"
+}
+
+
+### Actualizar ficha clínica
+PUT http://localhost:6700/fichas-clinicas/1
+Content-Type: application/json
+
+{
+"observaciones": "Actualización: paciente estable",
+"activa": true
+}

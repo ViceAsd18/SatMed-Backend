@@ -18,7 +18,7 @@ import com.satmed.fichaClinica.services.FichaClinicaService;
 
 
 @RestController
-@RequestMapping("ficha-clinica")
+@RequestMapping("fichas-clinicas")
 public class FichaClinicaController {
     
     @Autowired

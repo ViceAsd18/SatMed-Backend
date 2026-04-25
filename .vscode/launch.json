@@ -9,6 +9,16 @@
             "projectName": "comuna",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FichaClinicaApplication<fichaClinica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.fichaClinica.FichaClinicaApplication",
+            "projectName": "fichaClinica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
