@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PacienteApplication<paciente>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.paciente.PacienteApplication",
+            "projectName": "paciente",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

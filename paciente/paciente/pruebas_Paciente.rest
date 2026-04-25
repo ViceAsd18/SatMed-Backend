@@ -1,0 +1,32 @@
+### Listar pacientes
+GET http://localhost:8084/api/pacientes/listar
+Accept: application/json
+
+### Buscar paciente por ID
+GET http://localhost:8084/api/pacientes/1
+Accept: application/json
+
+### Agregar paciente
+POST http://localhost:8084/api/pacientes/agregar
+Content-Type: application/json
+
+{
+    "idPaciente": 1,
+    "rutPaciente": "12345678-9",
+    "nombrePaciente": "Juan",
+    "apellidoPaciente": "Pérez",
+    "correoPaciente": "juan@email.com",
+    "telefonoPaciente": "+56911112222",
+    "idEstadoPaciente": 1
+}
+
+### Actualizar paciente
+PUT http://localhost:8084/api/pacientes/actualizar/1
+Content-Type: application/json
+
+{
+  "idEstadoPaciente": 2
+}
+
+### Eliminar paciente
+DELETE http://localhost:8084/api/pacientes/eliminar/1
