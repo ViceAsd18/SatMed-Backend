@@ -1,0 +1,32 @@
+### Listar citas
+GET http://localhost:8085/api/citas/listar
+
+### Obtener cita por ID
+GET http://localhost:8085/api/citas/1
+
+### Agregar cita
+POST http://localhost:8085/api/citas/agregar
+Content-Type: application/json
+
+{
+  "fechaHora": "2026-05-10T10:30:00",
+  "motivoCita": "Control cardiologico",
+  "estadoCitaIdEstadoCita": 1,
+  "profesionalIdProfesional": 2,
+  "pacienteIdPaciente": 3
+}
+
+### Actualizar cita
+PUT http://localhost:8085/api/citas/actualizar/1
+Content-Type: application/json
+
+{
+  "fechaHora": "2026-05-11T11:45:00",
+  "motivoCita": "Reevaluacion de examenes",
+  "estadoCitaIdEstadoCita": 2,
+  "profesionalIdProfesional": 2,
+  "pacienteIdPaciente": 3
+}
+
+### Eliminar cita
+DELETE http://localhost:8085/api/citas/eliminar/1
