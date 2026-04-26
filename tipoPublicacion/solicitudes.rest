@@ -1,0 +1,14 @@
+### Variables de entorno
+@api = http://localhost:6800/tipo-publicacion
+
+### 1. Obtener todos los tipos de publicación
+GET {{api}}
+Accept: application/json
+
+###
+
+### 2. Buscar tipo de publicación por nombre (PathVariable)
+GET {{api}}/buscar/No
+Accept: application/json
+
+###
