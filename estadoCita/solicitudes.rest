@@ -1,0 +1,20 @@
+### Variables de entorno
+@api = http://localhost:6900/estados-cita
+
+### 1. Obtener todos los estados de cita (Para el select de Angular)
+GET {{api}}
+Accept: application/json
+
+###
+
+### 2. Buscar un estado por nombre (PathVariable)
+# Puedes probar con: Pendiente, Confirmada, Cancelada, etc.
+GET {{api}}/buscar/Pendiente
+Accept: application/json
+
+###
+
+### 3. Prueba de búsqueda parcial (Si usaste ContainingIgnoreCase)
+# Debería traerte "Confirmada" y "Cancelada"
+GET {{api}}/buscar/ada
+Accept: application/json
