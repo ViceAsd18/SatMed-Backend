@@ -20,6 +20,7 @@ public class Tratamiento {
     private Integer idTratamiento;
 
     @Column(nullable = false, length = 500)
+    private String descripcionTratamiento;
 
     private LocalDate fechaInicio;
 
