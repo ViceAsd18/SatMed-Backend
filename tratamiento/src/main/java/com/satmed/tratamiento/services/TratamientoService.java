@@ -50,7 +50,7 @@ public class TratamientoService {
         tratamiento.setDescripcionTratamiento(nuevoTratamiento.getDescripcionTratamiento());
         tratamiento.setFechaInicio(LocalDate.now());
         tratamiento.setFechaFin(nuevoTratamiento.getFechaFin());
-        tratamiento.setIdAtencionMedica(nuevoTratamiento.getIdAtencioMedica());
+        tratamiento.setIdAtencionMedica(nuevoTratamiento.getIdAtencionMedica());
         tratamiento.setIdEstadoTratamiento(1);
 
         return tratamientoRepository.save(tratamiento);

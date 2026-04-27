@@ -9,6 +9,6 @@ public class AgregarTratamiento {
     
     private String descripcionTratamiento;
     private LocalDate fechaFin;
-    private Integer idAtencioMedica;
+    private Integer idAtencionMedica;
 
 }
