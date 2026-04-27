@@ -75,7 +75,7 @@ public class TratamientoService {
     }
 
 
-    public void eliminarTratamiento(Integer idTratamiento) {
+    public String eliminarTratamiento(Integer idTratamiento) {
         
     Tratamiento tratamiento = tratamientoRepository.findById(idTratamiento).orElse(null);
     
@@ -84,6 +84,8 @@ public class TratamientoService {
     }
     
     tratamientoRepository.deleteById(idTratamiento);
+
+    return "Tratamiento con ID: " + idTratamiento + " ha sido eliminado exitosamente";
 }
 
 

@@ -1,0 +1,37 @@
+### Configuración de Variables
+@api = http://localhost:7100/tratamiento
+
+### 1. Obtener todos los tratamientos
+# Cambiado de /tratamiento/listar a solo /tratamiento
+GET {{api}}
+
+### 2. Crear un nuevo tratamiento
+# Cambiado de /tratamiento/crear a solo /tratamiento
+POST {{api}}
+Content-Type: application/json
+
+{
+    "descripcionTratamiento": "Ibuprofeno 600mg cada 8 horas por inflamación",
+    "fechaFin": "2026-05-05",
+    "idAtencionMedica": 2
+}
+
+### 3. Obtener un tratamiento específico por ID
+GET {{api}}/1
+
+### 4. Obtener por Atención Médica
+GET {{api}}/atencion-medica/2
+
+### 5. Actualizar un tratamiento
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+    "descripcionTratamiento": "Ibuprofeno 600mg - Finalizado",
+    "fechaInicio": "2026-04-27",
+    "fechaFin": "2026-05-05",
+    "idEstadoTratamiento": 2
+}
+
+### 6. Eliminar un tratamiento
+DELETE {{api}}/1
