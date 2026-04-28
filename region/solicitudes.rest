@@ -38,3 +38,7 @@ DELETE http://localhost:6200/regiones/2
 
 ### Probar error - Región no existe
 GET http://localhost:6200/regiones/999
+
+
+####
+GET http://localhost:6200
