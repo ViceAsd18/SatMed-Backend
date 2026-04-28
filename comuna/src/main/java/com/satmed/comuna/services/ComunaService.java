@@ -38,28 +38,31 @@ public class ComunaService {
     }
 
     public List<Comuna> obtenerComunasPorRegion(Integer idRegion) {
-
         RegionDto region = null;
 
         try {
             region = regionWebClient.get()
-                    .uri("/region/" + idRegion)
+                    .uri("/regiones/" + idRegion)
                     .retrieve()
                     .bodyToMono(RegionDto.class)
                     .block();
 
-            if (region == null){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Región con ID: " + idRegion + " no encontrada");
+            if (region == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La región con ID " + idRegion + " no existe en el sistema.");
             }
 
-        } catch (WebClientResponseException e){
-            throw new ResponseStatusException(
-                HttpStatus.valueOf(e.getStatusCode().value()),
-                "Error al obtener la región: " + e.getResponseBodyAsString());
-        } catch (Exception e ) {
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Servicio de regiones no disponible: " + e.getMessage()); 
-        } 
+        } catch (WebClientResponseException e) {
+            // Capturamos el 404 que viene del otro microservicio Region.
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, " La región con ID: " + idRegion + " no existe.");
+            }
+            //Respuesta generica para otros errores
+            throw new ResponseStatusException(e.getStatusCode(), "Error en el microservicio de Regiones.");
 
+        } catch (Exception e) {
+            //Servicio apagado
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "El servicio de Regiones no está disponible.");
+        }
 
         return comunaRepository.findByIdRegion(idRegion);
     }

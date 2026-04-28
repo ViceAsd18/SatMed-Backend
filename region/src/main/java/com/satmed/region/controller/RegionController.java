@@ -19,7 +19,7 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-    @GetMapping
+    @GetMapping("")
     public List<Region> obtenerRegiones() {
         return regionService.obtenerRegiones();
     }

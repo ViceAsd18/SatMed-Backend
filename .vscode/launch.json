@@ -19,6 +19,16 @@
             "projectName": "fichaClinica",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RegionApplication<region>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.region.RegionApplication",
+            "projectName": "region",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
