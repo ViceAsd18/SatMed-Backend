@@ -1,6 +1,8 @@
 package com.satmed.usuarios.models.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -36,7 +38,7 @@ public class Usuario {
     private String telefonoUsuario;
 
     @Column(nullable = false)
-    private String fechaNacimientoUsuario;
+    private LocalDate fechaNacimientoUsuario;
 
     @Column(nullable = false, length = 100)
     private String contrasenaUsuario;
@@ -45,7 +47,7 @@ public class Usuario {
     private Boolean activo; 
 
     @Column(updatable = false)
-    private LocalDate fechaCreacionUsuario;
+    private LocalDateTime fechaCreacionUsuario;
 
     @Column(nullable = false)
     private Integer idGenero;

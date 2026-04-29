@@ -1,5 +1,7 @@
 package com.satmed.usuarios.models.request;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,7 +33,7 @@ public class AgregarUsuario {
     private String telefonoUsuario;
 
     @NotBlank(message = "La fecha de nacimiento es obligatoria")
-    private String fechaNacimientoUsuario; 
+    private LocalDate fechaNacimientoUsuario; 
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")

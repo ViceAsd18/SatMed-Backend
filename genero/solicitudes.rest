@@ -1,0 +1,9 @@
+### LISTAR TODOS LOS GÉNEROS
+
+GET http://localhost:7120/generos
+Content-Type: application/json
+
+### BUSCAR GÉNERO POR ID
+
+GET http://localhost:7120/generos/4
+Content-Type: application/json

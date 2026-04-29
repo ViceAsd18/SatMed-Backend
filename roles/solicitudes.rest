@@ -13,7 +13,7 @@ POST http://localhost:6500/roles
 Content-Type: application/json
 
 {
-    "nombreRol": "Administrador"
+    "nombreRol": "Paciente"
 }
 
 ### Crear otro rol

@@ -13,27 +13,27 @@ import com.satmed.genero.models.entities.Genero;
 import com.satmed.genero.services.GeneroServices;
 
 @RestController
-@RequestMapping("/api/generos")
+@RequestMapping("/generos")
 public class GeneroController {
 
     @Autowired
     private GeneroServices generoService;
 
 
-    @GetMapping("/listar")
+    @GetMapping("")
     public List<Genero> listar() {
         return generoService.obtenerTodosGenero();
     }
 
 
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/{id}")
     public Genero buscarPorId(@PathVariable Integer id) {
         return generoService.obtenerGeneroPorId(id);
     }
 
 
     // DELETE: Eliminar género
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/{id}")
     public String eliminar(@PathVariable Integer id) {
         return generoService.eliminarGenero(id);
     }
