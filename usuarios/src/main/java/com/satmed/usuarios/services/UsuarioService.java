@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import org.springframework.web.server.ResponseStatusException;
 
 import com.satmed.usuarios.models.dto.GeneroDto;
+import com.satmed.usuarios.models.dto.RolDto;
 import com.satmed.usuarios.models.entities.Usuario;
 import com.satmed.usuarios.models.request.AgregarUsuario;
 import com.satmed.usuarios.repositories.UsuarioRepository;
@@ -22,6 +23,9 @@ public class UsuarioService {
 
     @Autowired
     private WebClient generoWebClient;  
+
+    @Autowired
+    private WebClient rolWebClient;
 
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
@@ -64,6 +68,7 @@ public class UsuarioService {
     public Usuario agregarUsuario(AgregarUsuario usuarioRequest){
 
         GeneroDto genero = null;
+        RolDto rol = null;
 
         //Conexcion Con Microservicio Genero
         try {
@@ -86,6 +91,27 @@ public class UsuarioService {
         } 
 
 
+        //Conexion con Microservicio Rol
+        try {
+            rol = rolWebClient.get()
+                .uri("/roles/{id}", usuarioRequest.getIdRol())
+                .retrieve()
+                .bodyToMono(RolDto.class)
+                .block();
+        } catch (WebClientResponseException e) {
+            //404
+            if(e.getStatusCode() == HttpStatus.NOT_FOUND){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rol con id: " + usuarioRequest.getIdRol() + " no encontrado.");
+            }
+            //Error Generico
+            throw new ResponseStatusException(e.getStatusCode(), "Error al conectarse con Microservicio roles: " + e.getResponseBodyAsString());
+
+        } catch (Exception e) {
+            //MS Rol Apagadao            
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Roles apagado.");
+        } 
+
+
 
         Usuario usuarioNuevo = new Usuario();
 
@@ -101,8 +127,7 @@ public class UsuarioService {
         usuarioNuevo.setActivo(true);
 
         usuarioNuevo.setIdGenero(usuarioRequest.getIdGenero());
-
-        //ID Rol
+        usuarioNuevo.setIdRol(usuarioRequest.getIdRol());
 
         //ID Direccion
 

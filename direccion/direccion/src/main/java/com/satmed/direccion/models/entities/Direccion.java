@@ -21,9 +21,13 @@ public class Direccion {
 
     @NotBlank(message = "La calle es obligatoria")
     @Column(nullable = false)
-    private String calle;
+    private String calleDireccion;
 
     @NotNull(message = "El numero es obligatorio")
     @Column(nullable = false)
-    private Integer numero;
+    private Integer numeroDireccion;
+
+    @Column(nullable = false)
+    private Integer idComuna;
+
 }

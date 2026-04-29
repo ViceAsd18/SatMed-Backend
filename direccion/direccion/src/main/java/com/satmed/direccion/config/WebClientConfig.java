@@ -1,4 +1,4 @@
-package com.satmed.usuarios.config;
+package com.satmed.direccion.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,17 +8,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
     
     @Bean
-    public WebClient generoWebClient(){
+    public WebClient comunaWebClient(){
         return WebClient.builder()
-                .baseUrl("http://localhost:7120")
+                .baseUrl("http://localhost:6100")
                 .build();
     }
 
-    @Bean
-    public WebClient rolWebClient(){
-        return WebClient.builder()
-                .baseUrl("http://localhost:6500")
-                .build();
-    }
 
 }

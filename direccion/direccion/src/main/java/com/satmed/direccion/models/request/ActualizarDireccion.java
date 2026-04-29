@@ -7,9 +7,15 @@ import lombok.Data;
 @Data
 public class ActualizarDireccion {
 
+    @NotNull(message = "El id de direccion es obligatorio")
+    private Integer idDireccion;
+
     @NotBlank(message = "La calle es obligatoria")
-    private String calle;
+    private String calleDireccion;
 
     @NotNull(message = "El numero es obligatorio")
-    private Integer numero;
+    private Integer numeroDireccion;
+
+    @NotNull(message = "El id de comuna es obligatorio")
+    private Integer idComuna;
 }

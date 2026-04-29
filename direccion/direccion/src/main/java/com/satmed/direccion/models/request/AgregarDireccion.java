@@ -8,8 +8,11 @@ import lombok.Data;
 public class AgregarDireccion {
 
     @NotBlank(message = "La calle es obligatoria")
-    private String calle;
+    private String calleDireccion;
 
     @NotNull(message = "El numero es obligatorio")
-    private Integer numero;
+    private Integer numeroDireccion;
+
+    @NotNull(message = "El id de comuna es obligatorio")
+    private Integer idComuna;
 }
