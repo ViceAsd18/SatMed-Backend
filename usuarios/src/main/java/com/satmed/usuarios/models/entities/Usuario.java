@@ -36,7 +36,7 @@ public class Usuario {
     private String telefonoUsuario;
 
     @Column(nullable = false)
-    private LocalDate fechaNacimientoUsuario;
+    private String fechaNacimientoUsuario;
 
     @Column(nullable = false, length = 100)
     private String contrasenaUsuario;

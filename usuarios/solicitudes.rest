@@ -1,0 +1,30 @@
+### Configuración de variables
+@url = http://localhost:7575/usuarios
+
+### 1. Obtener todos los usuarios
+GET {{url}}
+Accept: application/json
+
+---
+
+### 2. Obtener usuario por ID (Prueba uno que sepas que existe)
+GET {{url}}/1
+Accept: application/json
+
+---
+
+### 3. Obtener usuario por RUT (Formato sin puntos y con guion)
+GET {{url}}/rut/12345678-9
+Accept: application/json
+
+---
+
+### 4. Obtener usuario por Email
+GET {{url}}/email/m.paz@satmed.cl
+Accept: application/json
+
+---
+
+### 5. Prueba de error (RUT que no existe - Debería dar 404)
+GET {{url}}/rut/99999999-9
+Accept: application/json
