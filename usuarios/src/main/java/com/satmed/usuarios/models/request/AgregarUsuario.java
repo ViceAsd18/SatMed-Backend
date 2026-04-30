@@ -42,10 +42,12 @@ public class AgregarUsuario {
     @NotNull(message = "El género es obligatorio")
     private Integer idGenero;
     
-    @NotNull(message = "La dirección es obligatoria")
-    private Integer idDireccion;
-
     @NotNull(message = "El rol es obligatorio")
     private Integer idRol;
+
+    //Campos para la direccion cuando un usuario se registra, se crean una direccion nueva y se asigna al usuario
+    private String calleDireccion;
+    private Integer numeroDireccion;
+    private Integer idComuna;
 
 }

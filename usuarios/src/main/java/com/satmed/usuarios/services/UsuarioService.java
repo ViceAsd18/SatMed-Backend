@@ -9,9 +9,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.satmed.usuarios.models.dto.DireccionDto;
 import com.satmed.usuarios.models.dto.GeneroDto;
 import com.satmed.usuarios.models.dto.RolDto;
 import com.satmed.usuarios.models.entities.Usuario;
+import com.satmed.usuarios.models.request.AgregarDireccion;
 import com.satmed.usuarios.models.request.AgregarUsuario;
 import com.satmed.usuarios.repositories.UsuarioRepository;
 
@@ -26,6 +28,10 @@ public class UsuarioService {
 
     @Autowired
     private WebClient rolWebClient;
+
+    @Autowired
+    private WebClient direccionWebClient;
+
 
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
@@ -67,51 +73,29 @@ public class UsuarioService {
 
     public Usuario agregarUsuario(AgregarUsuario usuarioRequest){
 
-        GeneroDto genero = null;
-        RolDto rol = null;
+        DireccionDto direccion = null;
 
-        //Conexcion Con Microservicio Genero
+        validarGenero(usuarioRequest.getIdGenero());
+        validarRol(usuarioRequest.getIdRol());
+
+        //Crear Direccion para el usuario, conexion con Microservicio Direcciones
+        AgregarDireccion direccionRequest = new AgregarDireccion(); 
+        direccionRequest.setCalleDireccion(usuarioRequest.getCalleDireccion());
+        direccionRequest.setNumeroDireccion(usuarioRequest.getNumeroDireccion());
+        direccionRequest.setIdComuna(usuarioRequest.getIdComuna());
+
         try {
-            genero = generoWebClient.get()
-                .uri("/generos/{id}", usuarioRequest.getIdGenero())
+            direccion = direccionWebClient.post()
+                .uri("/direcciones")
+                .bodyValue(direccionRequest)
                 .retrieve()
-                .bodyToMono(GeneroDto.class)
+                .bodyToMono(DireccionDto.class)
                 .block();
         } catch (WebClientResponseException e) {
-            //404
-            if(e.getStatusCode() == HttpStatus.NOT_FOUND){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Género con id: " + usuarioRequest.getIdGenero() + " no encontrado.");
-            }
-            //Error Generico
-            throw new ResponseStatusException(e.getStatusCode(), "Error al conectarse con Microservicio géneros: " + e.getResponseBodyAsString());
-
+            throw new ResponseStatusException(e.getStatusCode(), "Error al conectarse con Microservicio direcciones: " + e.getResponseBodyAsString());            
         } catch (Exception e) {
-            //MS Genero Apagadao            
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Géneros apagado.");
-        } 
-
-
-        //Conexion con Microservicio Rol
-        try {
-            rol = rolWebClient.get()
-                .uri("/roles/{id}", usuarioRequest.getIdRol())
-                .retrieve()
-                .bodyToMono(RolDto.class)
-                .block();
-        } catch (WebClientResponseException e) {
-            //404
-            if(e.getStatusCode() == HttpStatus.NOT_FOUND){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rol con id: " + usuarioRequest.getIdRol() + " no encontrado.");
-            }
-            //Error Generico
-            throw new ResponseStatusException(e.getStatusCode(), "Error al conectarse con Microservicio roles: " + e.getResponseBodyAsString());
-
-        } catch (Exception e) {
-            //MS Rol Apagadao            
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Roles apagado.");
-        } 
-
-
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Direcciones apagado.");
+        }
 
         Usuario usuarioNuevo = new Usuario();
 
@@ -128,11 +112,45 @@ public class UsuarioService {
 
         usuarioNuevo.setIdGenero(usuarioRequest.getIdGenero());
         usuarioNuevo.setIdRol(usuarioRequest.getIdRol());
-
-        //ID Direccion
+        usuarioNuevo.setIdDireccion(direccion.idDireccion());
 
         return usuarioRepository.save(usuarioNuevo);   
     }
+
+
+    //Metodos de APOYO
+    private void validarGenero(Integer idGenero) {
+        try {
+            generoWebClient.get()
+                .uri("/generos/{id}", idGenero)
+                .retrieve()
+                .bodyToMono(Object.class)
+                .block();
+        } catch (WebClientResponseException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Género con id: " + idGenero + " no encontrado.");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Géneros apagado.");
+        }
+    }
+
+    private void validarRol(Integer idRol) {
+        try {
+            rolWebClient.get()
+                .uri("/roles/{id}", idRol)
+                .retrieve()
+                .bodyToMono(Object.class)
+                .block();
+        } catch (WebClientResponseException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rol con id: " + idRol + " no encontrado.");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Roles apagado.");
+        }
+    }
+
+
+
+
+
 
 
 

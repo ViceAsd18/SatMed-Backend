@@ -21,4 +21,11 @@ public class WebClientConfig {
                 .build();
     }
 
+    @Bean
+    public WebClient direccionWebClient(){
+        return WebClient.builder()
+                .baseUrl("http://localhost:8081")
+                .build();
+    }
+
 }
