@@ -10,8 +10,6 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import org.springframework.web.server.ResponseStatusException;
 
 import com.satmed.usuarios.models.dto.DireccionDto;
-import com.satmed.usuarios.models.dto.GeneroDto;
-import com.satmed.usuarios.models.dto.RolDto;
 import com.satmed.usuarios.models.entities.Usuario;
 import com.satmed.usuarios.models.request.AgregarDireccion;
 import com.satmed.usuarios.models.request.AgregarUsuario;
@@ -116,6 +114,24 @@ public class UsuarioService {
 
         return usuarioRepository.save(usuarioNuevo);   
     }
+
+
+    //ActualizarUsuario
+
+
+
+    public String eliminarUsuario(Integer idUsuario){
+        Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario).orElse(null);
+
+        if (usuarioEncontrado == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario con id: " +  idUsuario + " no fue encontrado");
+        }
+
+        usuarioRepository.delete(usuarioEncontrado);
+
+        return "Usuario con ID: " + idUsuario + " eliminado exitosamente";
+    }
+
 
 
     //Metodos de APOYO
