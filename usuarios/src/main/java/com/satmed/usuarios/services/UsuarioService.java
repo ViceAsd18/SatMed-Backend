@@ -74,8 +74,21 @@ public class UsuarioService {
 
         DireccionDto direccion = null;
 
+        //VALIDACIÓN DE DUPLICADOS (RUT y EMAIL)
+        if (usuarioRepository.existsByRutUsuario(usuarioRequest.getRutUsuario())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El RUT ingresado ya está registrado.");
+        }
+
+        if (usuarioRepository.existsByEmailUsuario(usuarioRequest.getEmailUsuario())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El correo ingresado electrónico ya está en uso.");
+        }
+        
+        
         validarGenero(usuarioRequest.getIdGenero());
         validarRol(usuarioRequest.getIdRol());
+
+
+
 
         //Crear Direccion para el usuario, conexion con Microservicio Direcciones
         AgregarDireccion direccionRequest = new AgregarDireccion(); 
@@ -125,10 +138,16 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario con id: " + id + " no encontrado.");
         }
 
+        if (!usuarioExistente.getEmailUsuario().equals(request.getEmailUsuario())) {
+            if (usuarioRepository.existsByEmailUsuario(request.getEmailUsuario())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El correo electrónico ingresado ya está en uso por otro usuario.");
+            }
+        }
+
         validarGenero(request.getIdGenero());
         validarRol(request.getIdRol());
 
-        //Crear direccion para el usuario, conexion con Microservicio Direcciones
+        // 4. Conexión con Microservicio Direcciones (Tu lógica actual)
         AgregarDireccion direccionReq = new AgregarDireccion();
         direccionReq.setCalleDireccion(request.getCalleDireccion());
         direccionReq.setNumeroDireccion(request.getNumeroDireccion());
@@ -153,14 +172,13 @@ public class UsuarioService {
         usuarioExistente.setEmailUsuario(request.getEmailUsuario());
         usuarioExistente.setTelefonoUsuario(request.getTelefonoUsuario());
         usuarioExistente.setFechaNacimientoUsuario(request.getFechaNacimientoUsuario());
-        
+        usuarioExistente.setContrasenaUsuario(request.getContrasenaUsuario());
         usuarioExistente.setIdGenero(request.getIdGenero());
         usuarioExistente.setIdRol(request.getIdRol());
         usuarioExistente.setIdDireccion(nuevaDireccion.idDireccion());
 
         return usuarioRepository.save(usuarioExistente);
     }
-
 
 
     //Se elimina el usuario pero se mantiene en la base de datos, se cambia su estado a inactivo para mantener la integridad referencial con otras tablas

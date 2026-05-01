@@ -1,30 +1,58 @@
-### Configuración de variables
+### Variables de entorno
 @url = http://localhost:7575/usuarios
 
-### 1. Obtener todos los usuarios
+###Obtener todos los usuarios
 GET {{url}}
-Accept: application/json
 
----
-
-### 2. Obtener usuario por ID (Prueba uno que sepas que existe)
+###Obtener un usuario por ID (Cambia el 1 por uno que exista)
 GET {{url}}/1
-Accept: application/json
 
----
-
-### 3. Obtener usuario por RUT (Formato sin puntos y con guion)
+###Obtener usuario por RUT
 GET {{url}}/rut/12345678-9
-Accept: application/json
 
----
+###Obtener usuario por Email
+GET {{url}}/email/s.tapia@satmed.cl
 
-### 4. Obtener usuario por Email
-GET {{url}}/email/m.paz@satmed.cl
-Accept: application/json
+### Este gatilla la orquestación con MS Direcciones, Género y Rol
+POST {{url}}
+Content-Type: application/json
 
----
+{
+    "pnombreUsuario": "Juan",
+    "snombreUsuario": "Ignacio",
+    "apaternoUsuario": "Perez",
+    "amaternoUsuario": "Soto",
+    "rutUsuario": "12445674-9",
+    "emailUsuario": "juan.perezxd@duoc.cl",
+    "telefonoUsuario": "987654321",
+    "contrasenaUsuario": "clave123",
+    "fechaNacimientoUsuario": "1995-10-15",
+    "idGenero": 1,
+    "idRol": 2,
+    "calleDireccion": "Avenida Siempre Viva",
+    "numeroDireccion": 742,
+    "idComuna": 15
+}
 
-### 5. Prueba de error (RUT que no existe - Debería dar 404)
-GET {{url}}/rut/99999999-9
-Accept: application/json
+### Cambia el /1 por el ID que quieras editar
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+    "pnombreUsuario": "Juan",
+    "snombreUsuario": "Ignacio",
+    "apaternoUsuario": "Perez",
+    "amaternoUsuario": "Gonzales",
+    "emailUsuario": "j.perez.new@duoc.cl",
+    "telefonoUsuario": "999888777",
+    "fechaNacimientoUsuario": "1995-10-15",
+    "idGenero": 1,
+    "contrasenaUsuario": "nuevaClave123",
+    "idRol": 2,
+    "calleDireccion": "Calle Falsa",
+    "numeroDireccion": 123,
+    "idComuna": 10
+}
+
+### Solo cambia el estado a 'false' en XAMPP
+DELETE {{url}}/1
