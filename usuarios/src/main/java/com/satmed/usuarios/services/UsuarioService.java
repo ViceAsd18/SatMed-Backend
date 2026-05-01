@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.satmed.usuarios.models.dto.DireccionDto;
 import com.satmed.usuarios.models.entities.Usuario;
+import com.satmed.usuarios.models.request.ActualizarUsuario;
 import com.satmed.usuarios.models.request.AgregarDireccion;
 import com.satmed.usuarios.models.request.AgregarUsuario;
 import com.satmed.usuarios.repositories.UsuarioRepository;
@@ -116,25 +117,59 @@ public class UsuarioService {
     }
 
 
-    //ActualizarUsuario
-    
+    public Usuario actualizarUsuario(Integer id, ActualizarUsuario request) {
+
+        Usuario usuarioExistente = usuarioRepository.findById(id).orElse(null);
+
+        if (usuarioExistente == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario con id: " + id + " no encontrado.");
+        }
+
+        validarGenero(request.getIdGenero());
+        validarRol(request.getIdRol());
+
+        //Crear direccion para el usuario, conexion con Microservicio Direcciones
+        AgregarDireccion direccionReq = new AgregarDireccion();
+        direccionReq.setCalleDireccion(request.getCalleDireccion());
+        direccionReq.setNumeroDireccion(request.getNumeroDireccion());
+        direccionReq.setIdComuna(request.getIdComuna());
+
+        DireccionDto nuevaDireccion;
+        try {
+            nuevaDireccion = direccionWebClient.post()
+                .uri("/direcciones")
+                .bodyValue(direccionReq)
+                .retrieve()
+                .bodyToMono(DireccionDto.class)
+                .block();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "No se pudo actualizar la dirección (MS Direcciones fuera de línea)");
+        }
+
+        usuarioExistente.setPnombreUsuario(request.getPnombreUsuario());
+        usuarioExistente.setSnombreUsuario(request.getSnombreUsuario());
+        usuarioExistente.setApaternoUsuario(request.getApaternoUsuario());
+        usuarioExistente.setAmaternoUsuario(request.getAmaternoUsuario());
+        usuarioExistente.setEmailUsuario(request.getEmailUsuario());
+        usuarioExistente.setTelefonoUsuario(request.getTelefonoUsuario());
+        usuarioExistente.setFechaNacimientoUsuario(request.getFechaNacimientoUsuario());
+        
+        usuarioExistente.setIdGenero(request.getIdGenero());
+        usuarioExistente.setIdRol(request.getIdRol());
+        usuarioExistente.setIdDireccion(nuevaDireccion.idDireccion());
+
+        return usuarioRepository.save(usuarioExistente);
+    }
 
 
 
-    //Se elimina el usuario pero se mantiene en la base de datos, se cambia su estado a inactivo
+    //Se elimina el usuario pero se mantiene en la base de datos, se cambia su estado a inactivo para mantener la integridad referencial con otras tablas
     public String eliminarUsuario(Integer idUsuario){
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario).orElse(null);
 
         if (usuarioEncontrado == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario con id: " +  idUsuario + " no fue encontrado");
         }
-
-    /* 
-     * BORRADO LÓGICO:
-     * No eliminamos el registro físicamente para mantener la integridad referencial 
-     * y el historial clínico en SatMed. Si el usuario tiene citas o recetas 
-     * asociadas, un borrado físico (DELETE) causaría errores de llave foránea.
-    */
 
         usuarioEncontrado.setActivo(false);
         usuarioRepository.save(usuarioEncontrado);
@@ -172,12 +207,5 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Microservicio Roles apagado.");
         }
     }
-
-
-
-
-
-
-
 
 }
