@@ -117,9 +117,11 @@ public class UsuarioService {
 
 
     //ActualizarUsuario
+    
 
 
 
+    //Se elimina el usuario pero se mantiene en la base de datos, se cambia su estado a inactivo
     public String eliminarUsuario(Integer idUsuario){
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario).orElse(null);
 
@@ -127,7 +129,15 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario con id: " +  idUsuario + " no fue encontrado");
         }
 
-        usuarioRepository.delete(usuarioEncontrado);
+    /* 
+     * BORRADO LÓGICO:
+     * No eliminamos el registro físicamente para mantener la integridad referencial 
+     * y el historial clínico en SatMed. Si el usuario tiene citas o recetas 
+     * asociadas, un borrado físico (DELETE) causaría errores de llave foránea.
+    */
+
+        usuarioEncontrado.setActivo(false);
+        usuarioRepository.save(usuarioEncontrado);
 
         return "Usuario con ID: " + idUsuario + " eliminado exitosamente";
     }
