@@ -9,9 +9,14 @@ public class WebClientConfig {
     
     @Bean
     public WebClient usuarioWebClient() {
-        return WebClient.builder()
-                .baseUrl("http://localhost:7575") 
-                .build();
+        return WebClient.builder().baseUrl("http://localhost:7575").build();
     }
+
+    @Bean
+    public WebClient especialidadWebClient() {
+        return WebClient.builder().baseUrl("http://localhost:7000").build();
+    }
+
+    
 
 }

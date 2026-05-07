@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.satmed.profesional.models.dto.UsuarioDto;
 import com.satmed.profesional.models.entities.Profesional;
+import com.satmed.profesional.models.request.AgregarProfesional;
 import com.satmed.profesional.repositories.ProfesionalRepository;
 
 
@@ -36,6 +37,21 @@ public class ProfesionalService {
 		}
 
 		return profesionalEncontrado;
+	}
+
+	public Profesional agregarProfesional(AgregarProfesional request){
+
+		validarUsuarioExiste(request.getIdUsuario());
+
+		Profesional nuevoProfesional = new Profesional();
+		nuevoProfesional.setIdUsuario(request.getIdUsuario());
+		nuevoProfesional.setNumeroRegistroProfesional(request.getNumeroRegistroProfesional());
+
+		//(HACER) validar que la especialidad
+		nuevoProfesional.setIdEspecialidad(request.getIdEspecialidad());	
+
+		return profesionalRepository.save(nuevoProfesional);
+
 	}
 
 
