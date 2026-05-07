@@ -1,33 +1,43 @@
-### SAT-MED — Microservicio Profesional (puerto 8081)
-@baseUrl = http://localhost:8083
-@contentType = application/json
+### Configuración de variables
+@host = http://localhost:8083
+@idProfesional = 1
 
-### Listar todos los profesionales
-GET {{baseUrl}}/api/profesionales
+### 1. Obtener todos los profesionales
+GET {{host}}/profesionales
+Accept: application/json
 
-### Obtener profesional por ID (cambiar 1 por un id existente)
-GET {{baseUrl}}/api/profesionales/1
+---
 
-### Agregar profesional
-POST {{baseUrl}}/api/profesionales
-Content-Type: {{contentType}}
+### 2. Obtener un profesional por ID
+GET {{host}}/profesionales/{{idProfesional}}
+Accept: application/json
 
-{
-  "numeroRegistroProfesional": "REG-2026-001",
-  "activoProfesional": true
-}
+---
 
-### Actualizar profesional (cambiar 1 por el id a actualizar)
-PUT {{baseUrl}}/api/profesionales/1
-Content-Type: {{contentType}}
+### 3. Agregar un nuevo Profesional
+# OJO: idUsuario e idEspecialidad deben existir en sus respectivos MS
+POST {{host}}/profesionales
+Content-Type: application/json
 
 {
-  "numeroRegistroProfesional": "REG-2026-001-ACT",
-  "activoProfesional": true
+  "idUsuario": 1,
+  "numeroRegistroProfesional": "123456-CH",
+  "idEspecialidad": 2
 }
 
-### Eliminar de forma lógica (desactiva activoProfesional)
-DELETE {{baseUrl}}/api/profesionales/1
+---
 
-### Eliminar de forma física (borra el registro)
-DELETE {{baseUrl}}/api/profesionales/1?fisico=true
+### 4. Actualizar la especialidad de un profesional
+# Según tu lógica, enviamos el registro médico (sin cambiarlo) y la nueva especialidad
+PUT {{host}}/profesionales/{{idProfesional}}
+Content-Type: application/json
+
+{
+  "numeroRegistroProfesional": "123456-CH",
+  "idEspecialidad": 5
+}
+
+---
+
+### 5. Eliminar un profesional
+DELETE {{host}}/profesionales/{{idProfesional}}

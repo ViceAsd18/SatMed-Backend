@@ -68,12 +68,12 @@ public class ProfesionalService {
 
 	}
 
-	public Profesional actualizarProfesional(Integer idProfesional, ActualizarProfesional request) {
+	public Profesional actualizarProfesional(ActualizarProfesional request) {
 
-		Profesional profesionalExistente = profesionalRepository.findById(idProfesional).orElse(null);
+		Profesional profesionalExistente = profesionalRepository.findById(request.getIdProfesional()).orElse(null);
 
 		if (profesionalExistente == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profesional con ID " + idProfesional + " no encontrado.");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profesional con ID " + request.getIdProfesional() + " no encontrado.");
 		}
 
 		validarEspecialidadExiste(request.getIdEspecialidad());
@@ -94,9 +94,6 @@ public class ProfesionalService {
 		profesionalRepository.deleteById(idProfesional);
 		return "Profesional eliminado correctamente.";
 	}
-
-
-
 
 	//MÉTODO DE APOYO: Conexión entre Microservicios
     private void validarUsuarioExiste(Integer idUsuario) {

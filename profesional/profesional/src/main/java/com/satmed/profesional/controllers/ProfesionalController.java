@@ -1,10 +1,9 @@
 package com.satmed.profesional.controllers;
 
+
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satmed.profesional.models.entities.Profesional;
@@ -20,55 +18,41 @@ import com.satmed.profesional.models.request.ActualizarProfesional;
 import com.satmed.profesional.models.request.AgregarProfesional;
 import com.satmed.profesional.services.ProfesionalService;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+
 
 @RestController
-@RequestMapping("/api/profesionales")
-@CrossOrigin
-@RequiredArgsConstructor
+@RequestMapping("/profesionales")
 public class ProfesionalController {
 
-	private final ProfesionalService profesionalService;
+	@Autowired
+	private ProfesionalService profesionalService;
 
-	@GetMapping
-	public ResponseEntity<List<Profesional>> listar() {
-		return ResponseEntity.ok(profesionalService.listarTodos());
+	@GetMapping("")
+	public List<Profesional> obtenerTodosLosProfesionales() {
+		return profesionalService.obtenerTodosLosProfesionales();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Profesional> obtener(@PathVariable Integer id) {
-		return profesionalService.buscarPorId(id)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+	@GetMapping("/{idProfesional}")
+	public Profesional obtenerProfesionalPorId(@PathVariable Integer idProfesional) {
+		return profesionalService.obtenerProfesionalPorId(idProfesional);
 	}
 
-	@PostMapping
-	public ResponseEntity<Profesional> agregar(@Valid @RequestBody AgregarProfesional body) {
-		Profesional creado = profesionalService.agregar(body);
-		return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+	@PostMapping("")
+	public Profesional agregarProfesional(@RequestBody AgregarProfesional request) {
+		return profesionalService.agregarProfesional(request);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Profesional> actualizar(
-			@PathVariable Integer id,
-			@Valid @RequestBody ActualizarProfesional body) {
-		return profesionalService.actualizar(id, body)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+	@PutMapping("")
+	public Profesional actualizarProfesional(@RequestBody ActualizarProfesional request){
+		return profesionalService.actualizarProfesional(request);
 	}
 
-	/**
-	 * @param fisico si es true elimina el registro de la BD; si es false (por defecto) desactiva (activoProfesional = false).
-	 */
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminar(
-			@PathVariable Integer id,
-			@RequestParam(name = "fisico", defaultValue = "false") boolean fisico) {
-		boolean ok = profesionalService.eliminar(id, fisico);
-		if (!ok) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.noContent().build();
+	@DeleteMapping("/{idProfesional}")
+	public String eliminarProfesional(@PathVariable Integer idProfesional) {
+		return profesionalService.eliminarProfesional(idProfesional);
 	}
+
+
+
+
 }
