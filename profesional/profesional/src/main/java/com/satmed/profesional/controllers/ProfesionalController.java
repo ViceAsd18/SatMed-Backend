@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.satmed.profesional.model.entities.Profesional;
-import com.satmed.profesional.model.request.ActualizarProfesional;
-import com.satmed.profesional.model.request.AgregarProfesional;
+import com.satmed.profesional.models.entities.Profesional;
+import com.satmed.profesional.models.request.ActualizarProfesional;
+import com.satmed.profesional.models.request.AgregarProfesional;
 import com.satmed.profesional.services.ProfesionalService;
 
 import jakarta.validation.Valid;
