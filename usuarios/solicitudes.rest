@@ -31,7 +31,7 @@ Content-Type: application/json
     "idRol": 2,
     "calleDireccion": "Avenida Siempre Viva",
     "numeroDireccion": 742,
-    "idComuna": 15
+    "idComuna": 1
 }
 
 ### Cambia el /1 por el ID que quieras editar

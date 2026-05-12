@@ -8,7 +8,8 @@
             "mainClass": "com.satmed.comuna.ComunaApplication",
             "projectName": "comuna",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60055 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=comuna"
         },
         {
             "type": "java",
@@ -27,6 +28,78 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.satmed.region.RegionApplication",
             "projectName": "region",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UsuariosApplication<usuarios>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.usuarios.UsuariosApplication",
+            "projectName": "usuarios",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProfesionalApplication<profesional>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.profesional.ProfesionalApplication",
+            "projectName": "profesional",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EspecialidadApplication<especialidad>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.especialidad.EspecialidadApplication",
+            "projectName": "especialidad",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DireccionApplication<direccion>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.direccion.DireccionApplication",
+            "projectName": "direccion",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60007 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=direccion"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GeneroApplication<genero>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.genero.GeneroApplication",
+            "projectName": "genero",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60294 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=genero"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RolesApplication<roles>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.roles.RolesApplication",
+            "projectName": "roles",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HorarioProfesionalApplication<horarioProfesional>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.horarioProfesional.HorarioProfesionalApplication",
+            "projectName": "horarioProfesional",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
