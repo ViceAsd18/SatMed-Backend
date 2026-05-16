@@ -1,58 +1,55 @@
-### Variables de entorno
-@url = http://localhost:7575/usuarios
+### Variables de entorno (Puerto adaptado al microservicio usuarios en ejecución)
+@url = http://localhost:7575/api/usuarios
 
-###Obtener todos los usuarios
-GET {{url}}
+### Obtener todos los usuarios
+GET {{url}}/listar
 
-###Obtener un usuario por ID (Cambia el 1 por uno que exista)
+### Obtener un usuario por ID
 GET {{url}}/1
 
-###Obtener usuario por RUT
-GET {{url}}/rut/12345678-9
-
-###Obtener usuario por Email
-GET {{url}}/email/s.tapia@satmed.cl
-
-### Este gatilla la orquestación con MS Direcciones, Género y Rol
-POST {{url}}
+### Agregar un nuevo Usuario / Administrador
+POST {{url}}/agregar
 Content-Type: application/json
 
 {
-    "pnombreUsuario": "Juan",
-    "snombreUsuario": "Ignacio",
-    "apaternoUsuario": "Perez",
-    "amaternoUsuario": "Soto",
-    "rutUsuario": "12445674-9",
-    "emailUsuario": "juan.perezxd@duoc.cl",
-    "telefonoUsuario": "987654321",
-    "contrasenaUsuario": "clave123",
-    "fechaNacimientoUsuario": "1995-10-15",
-    "idGenero": 1,
-    "idRol": 2,
-    "calleDireccion": "Avenida Siempre Viva",
-    "numeroDireccion": 742,
-    "idComuna": 1
+  "rut": "12445674-9",
+  "pnombreUsu": "Juan",
+  "snombreUsu": "Ignacio",
+  "apaternoUsu": "Perez",
+  "amaternoUsu": "Soto",
+  "emailUsuario": "juan.perezxd@duoc.cl",
+  "telefono": "987654321",
+  "contrasena": "clave123",
+  "fechaNacimiento": "1995-10-15",
+  "activo": "S",
+  "fechaRegistro": "2026-05-15",
+  "genero": { "id_genero": 1 },
+  "direccion": { "id_direccion": 1 },
+  "paciente": { "id_paciente": 1 },
+  "roles": { "id_rol": 2 }
 }
 
-### Cambia el /1 por el ID que quieras editar
-PUT {{url}}/1
+### Actualizar usuario (Cambia el /1 por el ID generado si es necesario)
+PUT {{url}}/actualizar/1
 Content-Type: application/json
 
 {
-    "pnombreUsuario": "Juan",
-    "snombreUsuario": "Ignacio",
-    "apaternoUsuario": "Perez",
-    "amaternoUsuario": "Gonzales",
-    "emailUsuario": "j.perez.new@duoc.cl",
-    "telefonoUsuario": "999888777",
-    "fechaNacimientoUsuario": "1995-10-15",
-    "idGenero": 1,
-    "contrasenaUsuario": "nuevaClave123",
-    "idRol": 2,
-    "calleDireccion": "Calle Falsa",
-    "numeroDireccion": 123,
-    "idComuna": 10
+  "rut": "12445674-9",
+  "pnombreUsu": "Juan",
+  "snombreUsu": "Ignacio",
+  "apaternoUsu": "Perez",
+  "amaternoUsu": "Gonzales",
+  "emailUsuario": "j.perez.new@duoc.cl",
+  "telefono": "999888777",
+  "contrasena": "nuevaClave123",
+  "fechaNacimiento": "1995-10-15",
+  "activo": "S",
+  "fechaRegistro": "2026-05-15",
+  "genero": { "id_genero": 1 },
+  "direccion": { "id_direccion": 1 },
+  "paciente": { "id_paciente": 1 },
+  "roles": { "id_rol": 2 }
 }
 
-### Solo cambia el estado a 'false' en XAMPP
-DELETE {{url}}/1
+### Eliminar usuario
+DELETE {{url}}/eliminar/1

@@ -1,0 +1,52 @@
+### Listar todos los usuarios
+GET http://localhost:8085/api/usuarios/listar
+
+### Agregar usuario (todos los campos del DDL)
+POST http://localhost:8085/api/usuarios/agregar
+Content-Type: application/json
+
+{
+  "rut": "12345678-9",
+  "pnombreUsu": "María",
+  "snombreUsu": "José",
+  "apaternoUsu": "González",
+  "amaternoUsu": "Pérez",
+  "emailUsuario": "maria.gonzalez@satmed.cl",
+  "telefono": "+56912345678",
+  "fechaNacimiento": "1990-05-15",
+  "contrasena": "Admin2026!",
+  "activo": "1",
+  "fechaRegistro": "2026-05-15",
+  "generoIdGenero": 1,
+  "direccionIdDireccion": 1,
+  "pacienteIdPaciente": 1,
+  "rolRolId": 1
+}
+
+### Obtener usuario por id
+GET http://localhost:8085/api/usuarios/1
+
+### Actualizar usuario
+PUT http://localhost:8085/api/usuarios/actualizar/1
+Content-Type: application/json
+
+{
+  "rut": "12345678-9",
+  "pnombreUsu": "María",
+  "snombreUsu": "José",
+  "apaternoUsu": "González",
+  "amaternoUsu": "López",
+  "emailUsuario": "maria.gonzalez@satmed.cl",
+  "telefono": "+56987654321",
+  "fechaNacimiento": "1990-05-15",
+  "contrasena": "Admin2026!",
+  "activo": "1",
+  "fechaRegistro": "2026-05-15",
+  "generoIdGenero": 1,
+  "direccionIdDireccion": 1,
+  "pacienteIdPaciente": 1,
+  "rolRolId": 1
+}
+
+### Eliminar usuario
+DELETE http://localhost:8085/api/usuarios/eliminar/1
