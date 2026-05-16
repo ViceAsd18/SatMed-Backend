@@ -4,29 +4,31 @@
 ### Obtener todos los usuarios
 GET {{url}}/listar
 
-### Obtener un usuario por ID
-GET {{url}}/1
-
 ### Agregar un nuevo Usuario / Administrador
+# NOTA: Pendiente ajustar el mapeo del objeto 'direccion' con las validaciones del microservicio.
 POST {{url}}/agregar
 Content-Type: application/json
 
 {
-  "rut": "12445674-9",
-  "pnombreUsu": "Juan",
-  "snombreUsu": "Ignacio",
-  "apaternoUsu": "Perez",
-  "amaternoUsu": "Soto",
+  "rutUsuario": "12445674-9",
+  "pnombreUsuario": "Juan",
+  "snombreUsuario": "Ignacio",
+  "apaternoUsuario": "Perez",
+  "amaternoUsuario": "Soto",
   "emailUsuario": "juan.perezxd@duoc.cl",
-  "telefono": "987654321",
-  "contrasena": "clave123",
-  "fechaNacimiento": "1995-10-15",
-  "activo": "S",
-  "fechaRegistro": "2026-05-15",
-  "genero": { "id_genero": 1 },
-  "direccion": { "id_direccion": 1 },
-  "paciente": { "id_paciente": 1 },
-  "roles": { "id_rol": 2 }
+  "telefonoUsuario": "987654321",
+  "contrasenaUsuario": "clave123",
+  "fechaNacimientoUsuario": "1995-10-15",
+  "activo": true,
+  "idGenero": 1,
+  "idRol": 2,
+  "idDireccion": 1,
+  "direccion": {
+    "id": 1,
+    "calle": "Av. Concha y Toro",
+    "numero": 1234,
+    "id_comuna": 1
+  }
 }
 
 ### Actualizar usuario (Cambia el /1 por el ID generado si es necesario)
@@ -34,21 +36,19 @@ PUT {{url}}/actualizar/1
 Content-Type: application/json
 
 {
-  "rut": "12445674-9",
-  "pnombreUsu": "Juan",
-  "snombreUsu": "Ignacio",
-  "apaternoUsu": "Perez",
-  "amaternoUsu": "Gonzales",
+  "rutUsuario": "12445674-9",
+  "pnombreUsuario": "Juan",
+  "snombreUsuario": "Ignacio",
+  "apaternoUsuario": "Perez",
+  "amaternoUsuario": "Gonzales",
   "emailUsuario": "j.perez.new@duoc.cl",
-  "telefono": "999888777",
-  "contrasena": "nuevaClave123",
-  "fechaNacimiento": "1995-10-15",
-  "activo": "S",
-  "fechaRegistro": "2026-05-15",
-  "genero": { "id_genero": 1 },
-  "direccion": { "id_direccion": 1 },
-  "paciente": { "id_paciente": 1 },
-  "roles": { "id_rol": 2 }
+  "telefonoUsuario": "999888777",
+  "contrasenaUsuario": "nuevaClave123",
+  "fechaNacimientoUsuario": "1995-10-15",
+  "activo": true,
+  "idGenero": 1,
+  "idDireccion": 1,
+  "idRol": 2
 }
 
 ### Eliminar usuario

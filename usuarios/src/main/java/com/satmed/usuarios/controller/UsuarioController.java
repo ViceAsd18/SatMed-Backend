@@ -20,13 +20,15 @@ import com.satmed.usuarios.models.request.AgregarUsuario;
 import com.satmed.usuarios.services.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+// Ajustado para incluir "/api", coincidiendo con tu archivo .rest
+@RequestMapping("/api/usuarios") 
 public class UsuarioController {
     
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("")
+    // Cambiado a "/listar" para que coincida con tu GET {{url}}/listar
+    @GetMapping("/listar")
     public List<Usuario> obtenerTodosLosUsuarios(){
         return usuarioService.obtenerTodosLosUsuarios();
     }
@@ -46,9 +48,11 @@ public class UsuarioController {
         return usuarioService.obtenerUsuarioPorEmail(emailUsuario);
     }
 
-    @PostMapping("")
-    public Usuario agregarUsuario(@RequestBody AgregarUsuario request) {
-        return usuarioService.agregarUsuario(request);
+    // Ajustado a "/agregar" para recibir el POST {{url}}/agregar
+    @PostMapping("/agregar")
+    public ResponseEntity<Usuario> agregarUsuario(@RequestBody AgregarUsuario request) {
+        Usuario nuevoUsuario = usuarioService.agregarUsuario(request);
+        return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED); 
     }
 
     @PutMapping("/{idUsuario}")
@@ -60,7 +64,4 @@ public class UsuarioController {
     public String eliminarUsuario(@PathVariable Integer idUsuario) {
         return usuarioService.eliminarUsuario(idUsuario);
     }
-
-    
-
 }
