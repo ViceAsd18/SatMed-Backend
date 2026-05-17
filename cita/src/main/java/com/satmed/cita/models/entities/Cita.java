@@ -32,8 +32,8 @@ public class Cita {
     @Column(nullable = false)
     private LocalDateTime fechaHora;
 
-    @Column(nullable = false, length = 250)
-    private String motivoCita;
+    @Column(name = "motivo_cita", nullable = false, length = 250)
+    private String motivo;
 
     @Column(nullable = false)
     private Integer estadoCitaIdEstadoCita;

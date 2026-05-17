@@ -32,7 +32,7 @@ public class CitaService {
         // Usamos el Builder que agregamos a la Entity Cita.java
         Cita nuevaCita = Cita.builder()
                 .fechaHora(request.getFechaHora())
-                .motivoCita(request.getMotivoCita())
+                .motivo(request.getMotivoCita())
                 .estadoCitaIdEstadoCita(request.getEstadoCitaIdEstadoCita())
                 .profesionalIdProfesional(request.getProfesionalIdProfesional())
                 .pacienteIdPaciente(request.getPacienteIdPaciente())
@@ -46,7 +46,7 @@ public class CitaService {
         return citaRepository.findById(idCita).map(cita -> {
             // Estos setters funcionan porque pusimos @Data o @Setter en Cita.java
             cita.setFechaHora(request.getFechaHora());
-            cita.setMotivoCita(request.getMotivoCita());
+            cita.setMotivo(request.getMotivoCita());
             cita.setEstadoCitaIdEstadoCita(request.getEstadoCitaIdEstadoCita());
             cita.setProfesionalIdProfesional(request.getProfesionalIdProfesional());
             cita.setPacienteIdPaciente(request.getPacienteIdPaciente());

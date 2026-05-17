@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CitaApplication",
+            "request": "launch",
+            "mainClass": "com.satmed.cita.CitaApplication",
+            "projectName": "cita"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ComunaApplication<comuna>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
