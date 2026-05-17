@@ -11,12 +11,9 @@ GET http://localhost:6100/comunas/1
 ### Obtener comunas por región (Coquimbo = 5)
 GET http://localhost:6100/comunas/region/5
 
-### Obtener comunas por región (Valparaíso = 6)
-GET http://localhost:6100/comunas/region/20
 
 ### Probar error - Comuna no existe
 GET http://localhost:6100/comunas/999
 
-
-###
+####
 GET http://localhost:6100

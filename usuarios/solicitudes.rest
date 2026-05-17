@@ -1,55 +1,58 @@
-### Variables de entorno (Puerto adaptado al microservicio usuarios en ejecución)
-@url = http://localhost:7575/api/usuarios
+### Variables de entorno
+@url = http://localhost:7575/usuarios
 
 ### Obtener todos los usuarios
-GET {{url}}/listar
+GET {{url}}
 
 ### Obtener un usuario por ID
 GET {{url}}/1
 
-### Agregar un nuevo Usuario / Administrador
-POST {{url}}/agregar
+### Obtener un usuario por RUT
+GET {{url}}/rut/12445644-9
+
+### Obtener un usuario por email
+GET {{url}}/email/juan.perezxd@duoc.cl
+
+### Agregar un nuevo usuario
+POST {{url}}
 Content-Type: application/json
 
 {
-  "rut": "12445674-9",
-  "pnombreUsu": "Juan",
-  "snombreUsu": "Ignacio",
-  "apaternoUsu": "Perez",
-  "amaternoUsu": "Soto",
-  "emailUsuario": "juan.perezxd@duoc.cl",
-  "telefono": "987654321",
-  "contrasena": "clave123",
-  "fechaNacimiento": "1995-10-15",
-  "activo": "S",
-  "fechaRegistro": "2026-05-15",
-  "genero": { "id_genero": 1 },
-  "direccion": { "id_direccion": 1 },
-  "paciente": { "id_paciente": 1 },
-  "roles": { "id_rol": 2 }
+  "rutUsuario": "12445644-9",
+  "pnombreUsuario": "Juan",
+  "snombreUsuario": "Ignacio",
+  "apaternoUsuario": "Gomez",
+  "amaternoUsuario": "Soto",
+  "emailUsuario": "juan.gomez@duoc.cl",
+  "telefonoUsuario": "987654321",
+  "fechaNacimientoUsuario": "1995-10-15",
+  "contrasenaUsuario": "clave123",
+  "idGenero": 1,
+  "idRol": 3,
+  "calleDireccion": "Los Alerces",
+  "numeroDireccion": 123,
+  "idComuna": 30
 }
 
-### Actualizar usuario (Cambia el /1 por el ID generado si es necesario)
-PUT {{url}}/actualizar/1
+### Actualizar usuario
+PUT {{url}}/1
 Content-Type: application/json
 
 {
-  "rut": "12445674-9",
-  "pnombreUsu": "Juan",
-  "snombreUsu": "Ignacio",
-  "apaternoUsu": "Perez",
-  "amaternoUsu": "Gonzales",
+  "pnombreUsuario": "Juan",
+  "snombreUsuario": "Ignacio",
+  "apaternoUsuario": "Perez",
+  "amaternoUsuario": "Gonzales",
   "emailUsuario": "j.perez.new@duoc.cl",
-  "telefono": "999888777",
-  "contrasena": "nuevaClave123",
-  "fechaNacimiento": "1995-10-15",
-  "activo": "S",
-  "fechaRegistro": "2026-05-15",
-  "genero": { "id_genero": 1 },
-  "direccion": { "id_direccion": 1 },
-  "paciente": { "id_paciente": 1 },
-  "roles": { "id_rol": 2 }
+  "telefonoUsuario": "999888777",
+  "contrasenaUsuario": "nuevaClave123",
+  "fechaNacimientoUsuario": "1995-10-15",
+  "idGenero": 1,
+  "idRol": 2,
+  "calleDireccion": "Los Robles",
+  "numeroDireccion": 456,
+  "idComuna": 31
 }
 
 ### Eliminar usuario
-DELETE {{url}}/eliminar/1
+DELETE {{url}}/1
