@@ -65,3 +65,5 @@ public class PacienteController {
         pacienteService.eliminarPaciente(idPaciente);
     }
 }
+
+
