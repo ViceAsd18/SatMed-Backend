@@ -13,31 +13,38 @@ import org.springframework.web.bind.annotation.RestController;
 import com.satmed.genero.models.entities.Genero;
 import com.satmed.genero.services.GeneroServices;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/generos")
-@CrossOrigin(origins = "*")
+@Tag(name = "Géneros", description = "Endpoints para la gestión de géneros del sistema SAT-MED")
 public class GeneroController {
 
     @Autowired
     private GeneroServices generoService;
 
 
+    @Operation(summary = "Listar todos los géneros")
     @GetMapping("")
     public List<Genero> listar() {
         return generoService.obtenerTodosGenero();
     }
 
 
+    @Operation(summary = "Obtener un género por su ID")
     @GetMapping("/{id}")
     public Genero buscarPorId(@PathVariable Integer id) {
         return generoService.obtenerGeneroPorId(id);
     }
 
 
-    // DELETE: Eliminar género
+    @Operation(summary = "Eliminar un género por su ID")
     @DeleteMapping("/{id}")
     public String eliminar(@PathVariable Integer id) {
         return generoService.eliminarGenero(id);
     }
 }
+
+
 
