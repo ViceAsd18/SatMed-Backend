@@ -42,3 +42,8 @@ GET http://localhost:6200/regiones/999
 
 ####
 GET http://localhost:6200
+
+
+
+####
+GET http://54.208.61.163/region/regiones
