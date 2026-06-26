@@ -30,7 +30,7 @@ public class Cita {
     private Integer idCita;
 
     @Column(nullable = false)
-    private LocalDateTime fechaHora;
+    private String fechaHora;
 
     @Column(name = "motivo_cita", nullable = false, length = 250)
     private String motivo;

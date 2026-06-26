@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class ActualizarCita {
 
     @NotNull(message = "La fecha y hora de la cita es obligatoria")
-    private LocalDateTime fechaHora;
+    private String fechaHora;
 
     @NotBlank(message = "El motivo de la cita es obligatorio")
     @Size(max = 250, message = "El motivo no puede superar los 250 caracteres")

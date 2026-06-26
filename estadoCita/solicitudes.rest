@@ -5,7 +5,6 @@
 GET {{api}}
 Accept: application/json
 
-###
 
 ### 2. Buscar un estado por nombre (PathVariable)
 # Puedes probar con: Pendiente, Confirmada, Cancelada, etc.

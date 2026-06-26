@@ -5,7 +5,8 @@
             "name": "CitaApplication",
             "request": "launch",
             "mainClass": "com.satmed.cita.CitaApplication",
-            "projectName": "cita"
+            "projectName": "cita",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=50334 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=cita"
         },
         {
             "type": "java",
@@ -66,7 +67,8 @@
             "mainClass": "com.satmed.especialidad.EspecialidadApplication",
             "projectName": "especialidad",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=61935 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=especialidad"
         },
         {
             "type": "java",
@@ -107,6 +109,57 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.satmed.horarioProfesional.HorarioProfesionalApplication",
             "projectName": "horarioProfesional",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AlergiasApplication<alergias>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.alergias.AlergiasApplication",
+            "projectName": "alergias",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49788 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=alergias"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AtencionMedicaApplication<atencion-medica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.atencion_medica.AtencionMedicaApplication",
+            "projectName": "atencion-medica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EnfermedadCronicaApplication<EnfermedadCronica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.EnfermedadCronica.EnfermedadCronicaApplication",
+            "projectName": "EnfermedadCronica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EstadoCitaApplication<estadoCita>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.estadoCita.EstadoCitaApplication",
+            "projectName": "estadoCita",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EstadoTratamientoApplication<estadoTratamiento>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.estadoTratamiento.EstadoTratamientoApplication",
+            "projectName": "estadoTratamiento",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

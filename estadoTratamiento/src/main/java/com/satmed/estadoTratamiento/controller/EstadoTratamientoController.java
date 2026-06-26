@@ -8,21 +8,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// 1. IMPORTAMOS LA ENTIDAD REAL
+import com.satmed.estadoTratamiento.models.entities.EstadoTratamiento;
+import com.satmed.estadoTratamiento.services.EstadoTratamientoService;
+
 @RestController
-@RequestMapping("")
-public class EstadoTratamiento {
+@RequestMapping("/estado-tratamiento")
+public class EstadoTratamientoController {
  
     @Autowired
-    private EstadoTratamiento estadoTratamiento;
+    private EstadoTratamientoService estadoTratamientoService; 
 
     @GetMapping("")
     public List<EstadoTratamiento> obtenerEstadosTratamientos(){
-        return estadoTratamiento.obtenerEstadosTratamientos();
+        return estadoTratamientoService.obtenerEstadosTratamientos();
     }
 
     @GetMapping("/{id}")
     public EstadoTratamiento obtenerEstadoTratamiento(@PathVariable Integer id){
-        return estadoTratamiento.obtenerEstadoTratamiento(id);
+        return estadoTratamientoService.obtenerEstadoTratamientoPorId(id);
     }
 
 }

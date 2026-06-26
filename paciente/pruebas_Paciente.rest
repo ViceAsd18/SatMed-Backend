@@ -1,32 +1,38 @@
-### Listar pacientes
-GET http://localhost:8084/api/pacientes/listar
+### Variables de entorno (Puerto adaptado al microservicio pacientes en ejecución)
+@url = http://localhost:8084/api/pacientes
+
+### 1. Obtener todos los pacientes (Trae la data unificada con el MS Usuarios)
+GET {{url}}/listar
 Accept: application/json
 
-### Buscar paciente por ID
-GET http://localhost:8084/api/pacientes/1
+###
+
+### 2. Obtener un paciente por ID (Cambia el /1 por el ID real de la tabla PACIENTE)
+GET {{url}}/buscar/1
 Accept: application/json
 
-### Agregar paciente
-POST http://localhost:8084/api/pacientes/agregar
+###
+
+### 3. Agregar un nuevo Paciente
+# NOTA: El idUsuario debe existir en el MS Usuarios (puerto 7575) o el servicio tirará un BAD REQUEST.
+POST {{url}}/agregar
 Content-Type: application/json
 
 {
-    "idPaciente": 1,
-    "rutPaciente": "12345678-9",
-    "nombrePaciente": "Juan",
-    "apellidoPaciente": "Pérez",
-    "correoPaciente": "juan@email.com",
-    "telefonoPaciente": "+56911112222",
-    "idEstadoPaciente": 1
+  "idUsuario": 19
 }
 
-### Actualizar paciente
-PUT http://localhost:8084/api/pacientes/actualizar/1
+###
+
+### 4. Actualizar un paciente existente (Cambia el /1 por el id_paciente que quieras editar)
+PUT {{url}}/actualizar/1
 Content-Type: application/json
 
 {
-  "idEstadoPaciente": 2
+  "idUsuario": 20
 }
 
-### Eliminar paciente
-DELETE http://localhost:8084/api/pacientes/eliminar/1
+###
+
+### 5. Eliminar un paciente de la base de datos
+DELETE {{url}}/eliminar/1

@@ -19,7 +19,7 @@ public class AgregarCita {
 
     @NotNull(message = "La fecha y hora de la cita es obligatoria")
     @Future(message = "La fecha y hora debe ser futura")
-    private LocalDateTime fechaHora;
+    private String fechaHora;
 
     @NotBlank(message = "El motivo de la cita es obligatorio")
     @Size(max = 250, message = "El motivo no puede superar los 250 caracteres")
