@@ -31,6 +31,9 @@ Content-Type: application/json
   }
 }
 
+### Opción A: Buscar usuario 16 directo
+GET http://localhost:7575/api/usuarios/16
+
 ### Actualizar usuario (Cambia el /1 por el ID generado si es necesario)
 PUT {{url}}/actualizar/1
 Content-Type: application/json

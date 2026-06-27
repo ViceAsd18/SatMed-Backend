@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/atenciones-medicas")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AtencionMedicaController {
 
     @Autowired

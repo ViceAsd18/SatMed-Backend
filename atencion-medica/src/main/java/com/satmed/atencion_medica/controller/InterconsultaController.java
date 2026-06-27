@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/interconsultas")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class InterconsultaController {
     
     @Autowired

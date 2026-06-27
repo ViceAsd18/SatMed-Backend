@@ -5,10 +5,10 @@
 GET {{url}}/listar
 Accept: application/json
 
-###
 
-### 2. Obtener un paciente por ID (Cambia el /1 por el ID real de la tabla PACIENTE)
-GET {{url}}/buscar/1
+
+#### 2. Obtener un paciente por ID (Cambia el /1 por el ID real de la tabla PACIENTE)
+GET {{url}}/buscar/10
 Accept: application/json
 
 ###

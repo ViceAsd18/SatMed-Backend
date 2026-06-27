@@ -16,7 +16,4 @@ public class WebClientConfig {
     public WebClient especialidadWebClient() {
         return WebClient.builder().baseUrl("http://localhost:7000").build();
     }
-
-    
-
 }

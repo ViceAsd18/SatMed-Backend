@@ -2,7 +2,7 @@
 GET http://localhost:7000/especialidades
 
 ### Obtener especialidad por ID
-GET http://localhost:7000/especialidades/1
+GET http://localhost:7000/especialidades/2
 
 ### Agregar especialidad
 POST http://localhost:7000/especialidades

@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.satmed.alergias.models.entities.Alergia;
 import com.satmed.alergias.services.AlergiaService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("alergias")
+@CrossOrigin(origins = "*")
 public class AlergiaController {
     
     @Autowired
