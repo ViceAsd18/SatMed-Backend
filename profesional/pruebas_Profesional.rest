@@ -9,7 +9,6 @@
 ### (Debería traer la lista combinando los datos de Usuarios y Especialidades)
 GET {{api}}
 
-###
 
 ### 2. OBTENER UN PROFESIONAL POR ID (Prueba con el ID 1)
 GET {{api}}/1
@@ -23,8 +22,8 @@ POST {{api}}
 Content-Type: application/json
 
 {
-  "idUsuario": 16,
-  "numeroRegistroProfesional": "REG-12345-CHILE",
+  "idUsuario": 19,
+  "numeroRegistroProfesional": "REG-12335-CHILE",
   "idEspecialidad": 2
 }
 
