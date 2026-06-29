@@ -1,0 +1,11 @@
+@api = http://localhost:6900/estado-tratamiento
+
+### 1. Obtener todos los estados de tratamiento (Para el select de Angular)
+GET {{api}}
+Accept: application/json
+
+---
+
+### 2. Obtener un estado de tratamiento por ID (Por si lo necesitas)
+GET {{api}}/1
+Accept: application/json    

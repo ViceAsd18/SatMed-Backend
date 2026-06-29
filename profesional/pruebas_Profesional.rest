@@ -1,0 +1,56 @@
+### ========================================================
+### PRUEBAS MICROSERVICIO: PROFESIONALES
+### ========================================================
+
+@port = 8083
+@api = http://localhost:{{port}}/profesionales
+
+### 1. OBTENER TODOS LOS PROFESIONALES
+### (Debería traer la lista combinando los datos de Usuarios y Especialidades)
+GET {{api}}
+
+
+### 2. OBTENER UN PROFESIONAL POR ID (Prueba con el ID 1)
+GET {{api}}/1
+
+###z
+
+### 3. AGREGAR UN NUEVO PROFESIONAL
+### (Ojo: El idUsuario debe existir en el MS de Usuarios [7575] 
+### y el idEspecialidad en el MS de Especialidades [7000])
+POST {{api}}
+Content-Type: application/json
+
+{
+  "idUsuario": 19,
+  "numeroRegistroProfesional": "REG-12335-CHILE",
+  "idEspecialidad": 2
+}
+
+###
+
+### 4. INTENTAR AGREGAR UN PROFESIONAL CON REGISTRO REPETIDO (Prueba de error 400)
+POST {{api}}
+Content-Type: application/json
+
+{
+  "idUsuario": 4,
+  "numeroRegistroProfesional": "REG-12345-CHILE",
+  "idEspecialidad": 1
+}
+
+###
+
+### 5. ACTUALIZAR LA ESPECIALIDAD DE UN PROFESIONAL
+PUT {{api}}
+Content-Type: application/json
+
+{
+  "idProfesional": 1,
+  "idEspecialidad": 4
+}
+
+###
+
+### 6. ELIMINAR UN PROFESIONAL POR ID
+DELETE {{api}}/1

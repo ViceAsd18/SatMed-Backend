@@ -3,34 +3,76 @@ package com.satmed.atencion_medica.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satmed.atencion_medica.models.entities.AtencionMedica;
-import com.satmed.atencion_medica.services.AtencionMedicaService;
+import com.satmed.atencion_medica.models.entities.BitacoraAtencion;
+import com.satmed.atencion_medica.models.request.ActualizarAtencionRequest;
+import com.satmed.atencion_medica.models.request.RegistrarAtencionRequest;
+import com.satmed.atencion_medica.models.request.RegistrarBitacoraRequest;
+import com.satmed.atencion_medica.servcies.AtencionMedicaService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("atenciones-medicas")
-@Tag(name = "Atención Médica", description = "Endpoints para la gestión de atenciones médicas en SAT-MED Coquimbo")
+@RequestMapping("/atenciones-medicas")
+@CrossOrigin(origins = "*")
 public class AtencionMedicaController {
-    
-    @Autowired
-    private AtencionMedicaService atencionMedicaService;
 
-    @GetMapping("")
-    @Operation(summary = "Obtener todas las atenciones médicas", description = "Recupera una lista completa con los registros de atenciones médicas.")
-    public List<AtencionMedica> obtenerAtencionMedica() {
-        return atencionMedicaService.obtenerAtencionMedica();
+    @Autowired
+    private AtencionMedicaService atencionService;
+
+    @PostMapping("")
+    public ResponseEntity<?> registrarAtencion(@Valid @RequestBody RegistrarAtencionRequest request) {
+        try {
+            AtencionMedica nueva = atencionService.registrarNuevaAtencionMedica(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nueva);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("")
+    public ResponseEntity<?> actualizarAtencion(@Valid @RequestBody ActualizarAtencionRequest request) {
+        try {
+            AtencionMedica actualizada = atencionService.modificarAtencionMedica(request);
+            return ResponseEntity.ok(actualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obtener atención médica por ID", description = "Busca y retorna los detalles de una atención médica específica mediante su ID único.")
-    public AtencionMedica obtenerAtencionMedicaPorId(@PathVariable Integer id) {
-        return atencionMedicaService.obtenerAtencionMedicaPorId(id);
+    public ResponseEntity<AtencionMedica> buscarAtencionPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(atencionService.obtenerDetalleDeAtencionPorId(id));
+    }
+
+    @GetMapping("/paciente/{idPaciente}")
+    public ResponseEntity<List<AtencionMedica>> buscarHistorialPorPaciente(@PathVariable Long idPaciente) {
+        return ResponseEntity.ok(atencionService.obtenerHistorialClinicoPorPaciente(idPaciente));
+    }
+
+    @PostMapping("/bitacora")
+    public ResponseEntity<?> agregarEventoBitacora(@Valid @RequestBody RegistrarBitacoraRequest request) {
+        try {
+            BitacoraAtencion nuevaBitacora = atencionService.registrarEventoEnBitacora(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevaBitacora);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/bitacora/atencion/{idAtencion}")
+    public ResponseEntity<List<BitacoraAtencion>> listarBitacoraDeAtencion(@PathVariable Long idAtencion) {
+        return ResponseEntity.ok(atencionService.obtenerBitacoraDeAtencion(idAtencion));
     }
 }

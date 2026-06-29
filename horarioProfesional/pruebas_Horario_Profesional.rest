@@ -1,0 +1,89 @@
+### ========================================================
+### VARIABLES GLOBALES
+### ========================================================
+@hostname = localhost
+@port = 8081
+@baseUrl = http://{{hostname}}:{{port}}/api/horarios-profesional
+
+### ========================================================
+### 1. LISTAR TODOS LOS HORARIOS
+### ========================================================
+# Trae las 25 filas que metiste en XAMPP
+GET {{baseUrl}}
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 2. BUSCAR UN HORARIO POR ID
+### ========================================================
+# Busca el horario con ID 1 (Lunes del Profesional 10)
+GET {{baseUrl}}/1
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 3. BUSCAR TODOS LOS HORARIOS DE UN PROFESIONAL
+### ========================================================
+# Trae solo los bloques horarios asignados al profesional ID 19 (Kinesiólogo)
+GET {{baseUrl}}/profesional/19
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 4. CREAR UN NUEVO HORARIO (Frontend -> Backend)
+### ========================================================
+# Agrega un bloque para el Profesional 30 el día Jueves (ID: 4)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "horaInicio": "10:00",
+    "horaFin": "15:30",
+    "idProfesional": 30,
+    "idDiaSemana": 4
+}
+
+###
+
+### ========================================================
+### 5. PROBAR VALIDACIÓN DE NEGOCIO (FORZAR ERROR)
+### ========================================================
+# Intenta meter una hora de inicio mayor que la de fin. 
+# Debería devolver un 400 Bad Request con tu mensaje personalizado.
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "horaInicio": "17:00",
+    "horaFin": "08:00",
+    "idProfesional": 30,
+    "idDiaSemana": 1
+}
+
+###
+
+### ========================================================
+### 6. ACTUALIZAR UN HORARIO EXISTENTE
+### ========================================================
+# Modifica el horario ID 1 (Cambia las horas y muévelo al Martes = 2)
+PUT {{baseUrl}}
+Content-Type: application/json
+
+{
+    "idHorarioProfesional": 1,
+    "horaInicio": "07:30",
+    "horaFin": "12:30",
+    "idDiaSemana": 2
+}
+
+###
+
+### ========================================================
+### 7. ELIMINAR UN HORARIO
+### ========================================================
+# Borra el horario ID 2 de la base de datos de forma limpia
+DELETE {{baseUrl}}/2
+Content-Type: application/json

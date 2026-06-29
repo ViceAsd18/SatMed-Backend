@@ -1,0 +1,63 @@
+### ========================================================
+### VARIABLES GLOBALES
+### ========================================================
+@hostname = localhost
+@port = 7280
+@baseUrl = http://{{hostname}}:{{port}}/interconsultas
+
+### ========================================================
+### 1. REGISTRAR UNA NUEVA INTERCONSULTA
+### ========================================================
+# Vinculamos la interconsulta a la atención médica ID 1 
+# y la derivamos al profesional especialista ID 25
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "motivo": "Paciente requiere evaluación urgente por sospecha de cardiopatía coronaria tras presentar palpitaciones.",
+    "fechaEmision": "2026-06-23",
+    "idAtencion": 1,
+    "idProfesional": 25
+}
+
+###
+
+### ========================================================
+### 2. OBTENER DETALLE DE UNA INTERCONSULTA POR ID
+### ========================================================
+# Revisa la interconsulta que acabamos de crear (asumiendo ID 1)
+GET {{baseUrl}}/1
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 3. LISTAR INTERCONSULTAS POR ATENCIÓN MÉDICA
+### ========================================================
+# Trae todas las derivaciones que nacieron de la atención ID 1
+GET {{baseUrl}}/atencion/1
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 4. LISTAR INTERCONSULTAS POR PROFESIONAL DESTINO
+### ========================================================
+# Trae las interconsultas que le han llegado al especialista ID 25
+GET {{baseUrl}}/profesional/25
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 5. ACTUALIZAR UNA INTERCONSULTA EXISTENTE
+### ========================================================
+# Modifica el motivo o la fecha por si el médico necesita corregir algo
+PUT {{baseUrl}}
+Content-Type: application/json
+
+{
+    "idInterconsulta": 1,
+    "motivo": "Paciente requiere evaluación prioritaria por sospecha de cardiopatía coronaria y antecedentes familiares.",
+    "fechaEmision": "2026-06-23"
+}

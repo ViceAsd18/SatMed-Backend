@@ -1,0 +1,103 @@
+### ========================================================
+### VARIABLES GLOBALES
+### ========================================================
+@hostname = localhost
+@port = 7280
+@baseUrl = http://{{hostname}}:{{port}}/atenciones-medicas
+
+### ========================================================
+### 1. OBTENER DETALLE DE UNA ATENCIÓN POR ID
+### ========================================================
+# Trae la atención ID 1 (El control de hipertensión del paciente 500)
+GET {{baseUrl}}/1
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 2. OBTENER HISTORIAL CLÍNICO DE UN PACIENTE
+### ========================================================
+# Trae todas las atenciones que se ha hecho el paciente ID 500
+GET {{baseUrl}}/paciente/500
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 3. VER BITÁCORA DE UNA ATENCIÓN ESPECÍFICA
+### ========================================================
+# Trae el log de auditoría inmutable de la atención ID 1
+GET {{baseUrl}}/bitacora/atencion/1
+Content-Type: application/json
+
+###
+
+### ========================================================
+### 4. REGISTRAR UNA NUEVA ATENCIÓN MÉDICA
+### ========================================================
+# Inserta una atención desde cero. 
+# Recuerda que las validaciones @NotBlank evitan que mandes campos vacíos.
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "fechaAtencion": "2026-06-21",
+    "motivo": "Dolor de cabeza agudo y visión borrosa.",
+    "diagnostico": "Migraña con aura.",
+    "indicaciones": "Reposo absoluto en cama con luz apagada. Tomar Viadil cada 8 horas.",
+    "idProfesional": 14,
+    "idPaciente": 503
+}
+
+###
+
+### ========================================================
+### 5. PROBAR VALIDACIÓN @NotBlank (FORZAR ERROR)
+### ========================================================
+# Mandamos el diagnóstico vacío. Debería rebotar con un 400 Bad Request
+# gracias al @Valid y @NotBlank, sin llegar a tocar tu Service.
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "fechaAtencion": "2026-06-21",
+    "motivo": "Revisión de exámenes.",
+    "diagnostico": "   ",
+    "indicaciones": "Sin novedades.",
+    "idProfesional": 10,
+    "idPaciente": 500
+}
+
+###
+
+### ========================================================
+### 6. ACTUALIZAR UNA ATENCIÓN EXISTENTE
+### ========================================================
+# Modifica los textos de la atención ID 1 (Por si el médico se equivocó al digitar)
+PUT {{baseUrl}}
+Content-Type: application/json
+
+{
+    "idAtencion": 1,
+    "fechaAtencion": "2026-06-15",
+    "motivo": "Control de rutina por hipertensión arterial - Actualizado.",
+    "diagnostico": "Hipertensión arterial controlada y mejoría notable.",
+    "indicaciones": "Mantener Losartán 50mg cada 12 horas. Se agrega Aspirina 100mg diaria."
+}
+
+###
+
+### ========================================================
+### 7. REGISTRAR UN NUEVO EVENTO EN LA BITÁCORA
+### ========================================================
+# Agrega un hito al historial de la atención ID 1.
+# Ojo: El Service le va a meter la estampa de tiempo actual sola como String.
+POST {{baseUrl}}/bitacora
+Content-Type: application/json
+
+{
+    "descripcion": "Se entrega receta física corregida al paciente.",
+    "idTipoEvento": 2,
+    "idUsuario": 101,
+    "idAtencion": 1
+}

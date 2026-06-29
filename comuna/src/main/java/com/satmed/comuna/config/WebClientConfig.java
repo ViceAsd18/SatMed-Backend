@@ -10,7 +10,8 @@ public class WebClientConfig {
     @Bean
     public WebClient regionWebClient(){
         return WebClient.builder()
-                .baseUrl("http://localhost:6200/")
+                .baseUrl("http://localhost/region/")
+                
                 .build();
     }
 
