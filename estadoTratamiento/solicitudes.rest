@@ -1,4 +1,4 @@
-@api = http://localhost:6900/estado-tratamiento
+@api = http://localhost:6920/estado-tratamiento
 
 ### 1. Obtener todos los estados de tratamiento (Para el select de Angular)
 GET {{api}}

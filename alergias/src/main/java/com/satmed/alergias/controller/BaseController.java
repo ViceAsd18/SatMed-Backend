@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satmed.alergias.models.dto.VersionInfo;
+<<<<<<< HEAD
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -26,3 +27,23 @@ public class BaseController {
         return new VersionInfo(appName, appVersion);
     }
 }
+=======
+
+@RestController
+@RequestMapping("/")
+public class BaseController {
+    
+    @Value("${app.name}")
+    private String nombre;
+
+    @Value("${app.version}")
+    private String version;
+
+    @GetMapping("")
+    public VersionInfo base() {
+        return new VersionInfo(nombre, version);
+    }
+    
+
+}   
+>>>>>>> desarrollo

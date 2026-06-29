@@ -1,8 +1,8 @@
 ### LISTAR
-GET http://localhost:8081/api/publicacion/listar
+GET http://localhost:8181/api/publicacion/listar
 
 ### AGREGAR
-POST http://localhost:8081/api/publicacion/agregar
+POST http://localhost:8181/api/publicacion/agregar
 Content-Type: application/json
 
 {
@@ -12,10 +12,10 @@ Content-Type: application/json
 }
 
 ### OBTENER POR ID
-GET http://localhost:8081/api/publicacion/1
+GET http://localhost:8181/api/publicacion/1
 
 ### ACTUALIZAR (Usando el ID 2 que sí existe)
-PUT http://localhost:8081/api/publicacion/actualizar/2
+PUT http://localhost:8181/api/publicacion/actualizar/2
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### ELIMINAR
-DELETE http://localhost:8081/api/publicacion/eliminar/1
+DELETE http://localhost:8181/api/publicacion/eliminar/1
