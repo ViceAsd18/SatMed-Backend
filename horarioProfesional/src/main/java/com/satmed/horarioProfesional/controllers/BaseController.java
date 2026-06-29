@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.satmed.horarioProfesional.dto.VersionInfo;
+import com.satmed.horarioProfesional.models.dto.VersionInfo;
+
 
 @RestController
 @RequestMapping("/")
