@@ -26,7 +26,7 @@ Content-Type: application/json
 ### 2. OBTENER DETALLE DE UNA INTERCONSULTA POR ID
 ### ========================================================
 # Revisa la interconsulta que acabamos de crear (asumiendo ID 1)
-GET {{baseUrl}}/1
+GET {{baseUrl}}
 Content-Type: application/json
 
 ###
