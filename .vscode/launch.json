@@ -100,7 +100,8 @@
             "mainClass": "com.satmed.roles.RolesApplication",
             "projectName": "roles",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60116 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=roles"
         },
         {
             "type": "java",
@@ -171,6 +172,26 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.satmed.tratamiento.TratamientoApplication",
             "projectName": "tratamiento",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ReunionClinicaApplication<reunion_clinica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.reunion_clinica.ReunionClinicaApplication",
+            "projectName": "reunion_clinica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TipoPublicacionApplication<tipoPublicacion>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.satmed.tipoPublicacion.TipoPublicacionApplication",
+            "projectName": "tipoPublicacion",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
